@@ -1,0 +1,61 @@
+﻿@page "/student-manage"
+@using Microsoft.EntityFrameworkCore
+
+<h3>Manage Student Courses</h3>
+<form @onsubmit="AssignCourse">
+    <div>
+        <select @bind="selectedStudentId">
+            <option value="">Select a Student</option>
+            @foreach (var student in students)
+            {
+                <option value="@student.Id">@student.Name</option>
+            }
+        </select>
+    </div>
+    <div>
+        <select @bind="selectedCourseId">
+            <option value="">Select a Course</option>
+            @foreach (var course in courses)
+            {
+                if (!assignedCourses.Contains(course.Id))
+                {
+                    <option value="@course.Id">@course.Name</option>
+                }
+            }
+        </select>
+    </div>
+    <button type="submit">Assign Course</button>
+</form>
+
+@if (students == null || courses == null)
+{
+    <p>Loading...</p>
+}
+
+@code {
+    private int selectedStudentId;
+    private int selectedCourseId;
+    private List<Student> students;
+    private List<Course> courses;
+    private HashSet<int> assignedCourses = new HashSet<int>();
+    ManagerContext db = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Load students and courses from the database
+        students = await db.Students.ToListAsync();
+        courses = await db.Courses.ToListAsync();
+    }
+
+    private async Task AssignCourse()
+    {
+        if (selectedStudentId != 0 && selectedCourseId != 0)
+        {
+            var studentCourse = new StudentCourse { StudentId = selectedStudentId, CourseId = selectedCourseId };
+            db.StudentCourses.Add(studentCourse);
+            await db.SaveChangesAsync();
+            assignedCourses.Add(selectedCourseId); // Track assigned courses to prevent reassigning
+            selectedCourseId = 0; // Reset the dropdown
+        }
+    }
+}

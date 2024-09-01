@@ -1,0 +1,38 @@
+﻿@page "/courses"
+@using Microsoft.EntityFrameworkCore
+
+<h3>Manage Courses</h3>
+
+<!-- Include the CourseForm component -->
+<CourseForm @ref="courseForm" OnCourseAdded="LoadCourses" />
+
+@if (courses == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <h3>Course List</h3>
+    <ul>
+        @foreach (var course in courses)
+        {
+            <li>@course.Name</li>
+        }
+    </ul>
+}
+
+@code {
+    private CourseForm courseForm;
+    private List<Course> courses;
+    ManagerContext db = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCourses();
+    }
+
+    private async Task LoadCourses()
+    {
+        courses = await db.Courses.ToListAsync();
+    }
+}

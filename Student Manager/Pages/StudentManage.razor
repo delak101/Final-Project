@@ -1,0 +1,35 @@
+﻿@page "/student-manage"
+@using Microsoft.EntityFrameworkCore
+
+<h3>Manage Student Courses</h3>
+
+<!-- Include the StudentCourseAssignmentForm component -->
+<StudentCourseAssignmentForm @ref="assignmentForm" OnAssignmentCompleted="LoadAssignedCourses" />
+
+@if (students == null || courses == null)
+{
+    <p>Loading...</p>
+}
+
+@code {
+    private StudentCourseAssignmentForm assignmentForm;
+    private List<Student> students;
+    private List<Course> courses;
+    ManagerContext db = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadStudentsAndCourses();
+    }
+
+    private async Task LoadStudentsAndCourses()
+    {
+        students = await db.Students.ToListAsync();
+        courses = await db.Courses.ToListAsync();
+    }
+
+    private async Task LoadAssignedCourses()
+    {
+        // Optionally refresh the list of assigned courses or students after assignment
+    }
+}
