@@ -1,0 +1,17 @@
+﻿@page "/instructors"
+@inject NavigationManager Navigator
+
+<h3>Add Instructor</h3>
+
+<button @onclick="AddInstructor" class="btn btn-primary mb-3">Add New Instructor</button>
+
+<hr />
+
+<InstructorList />
+
+@code {
+    void AddInstructor()
+    {
+        Navigator.NavigateTo("addinstructor");
+    }
+}

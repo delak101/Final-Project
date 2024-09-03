@@ -1,0 +1,43 @@
+﻿@using AKSoftware.Blazor.Utilities
+
+<div class="alert alert-secondary" role="alert">
+    <h1>StudentList</h1>
+</div>
+
+<table class="table table-borderless">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Age</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in students)
+        {
+            <tr>
+                <td>@student.Name</td>
+                <td>@student.Address</td>
+                <td>@student.Age</td>
+                <td>
+                    <button class="btn btn-warning">
+                        details
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    List<Student> students = new();
+    ManagerContext db = new();
+
+    protected override void OnInitialized()
+    {
+        students = db.Students.ToList();
+        base.OnInitialized();
+    }
+
+}

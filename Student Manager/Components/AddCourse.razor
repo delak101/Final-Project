@@ -1,0 +1,47 @@
+﻿@if (IsFormVisible)
+{
+    <div class="alert alert-secondary" role="alert">
+        <h3>Add Course</h3>
+    </div>
+
+    <EditForm Model="newCourse" OnValidSubmit="HandleValidSubmit">
+        @* <DataAnnotationsValidator /> *@
+        <div class="mb-3">
+            <label for="InputCourseName" class="form-label">Course Name</label>
+            <InputText @bind-Value="newCourse.Name" type="text" class="form-control" id="InputCourseName" />
+            @* <ValidationMessage For="() => newCourse.Name" /> *@
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </EditForm>
+}
+else
+{
+    <CourseAddedSuccessfully Name="@courseName" />
+}
+@code {
+    private Course newCourse = new();
+    private bool IsFormVisible = true;
+    private string courseName;
+    ManagerContext db = new ManagerContext();
+
+    protected override async Task OnInitializedAsync()
+    {
+        MessagingCenter.Subscribe<AddedSuccessfully>(this, "ShowFormMsg", (sender) =>
+        {
+            IsFormVisible = true;
+            InvokeAsync(() => StateHasChanged());
+        });
+    }
+    private async Task HandleValidSubmit()
+    {
+        db.Courses.Add(newCourse);
+        await db.SaveChangesAsync();
+        if (newCourse.Id != 0)
+        {
+            courseName = newCourse.Name;
+            MessagingCenter.Send(this, "CourseAdded", newCourse);
+            newCourse = new Course();
+            IsFormVisible = false;
+        }
+    }
+}

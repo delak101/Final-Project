@@ -1,0 +1,14 @@
+﻿<div class="alert alert-success" role="alert">
+    <strong>@Name</strong> has been added successfully!
+</div>
+<button class="btn btn-secondary" @onclick="OnOkClick">OK</button>
+
+@code {
+    [Parameter]
+    public string Name { get; set; }
+
+    private void OnOkClick()
+    {
+        MessagingCenter.Send(this, "ShowFormMsg");
+    }
+}

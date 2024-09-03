@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Student_Manager.Data;
+using Student_Manager.DataContext;
 
 namespace Student_Manager
 {
@@ -33,6 +34,12 @@ namespace Student_Manager
 
             app.MapBlazorHub();
             app.MapFallbackToPage("/_Host");
+
+            ManagerContext db = new ManagerContext();
+            //db.Database.EnsureDeleted();
+            db.Database.EnsureCreated();
+            db.SaveChanges();
+
 
             app.Run();
         }

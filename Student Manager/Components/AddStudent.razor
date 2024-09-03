@@ -1,0 +1,64 @@
+﻿@page "/addstudent"
+@inject NavigationManager Navigator
+@using AKSoftware.Blazor.Utilities
+
+@if (IsFormVisible)
+{
+    <div class="alert alert-secondary" role="alert">
+        <h3>Add Student</h3>
+    </div>
+
+    <EditForm Model="student" OnValidSubmit="OnValidSubmit">
+        <div class="mb-3">
+            <label for="InputStudentName" class="form-label">Name</label>
+            <InputText @bind-Value="student.Name" type="text" class="form-control" id="InputStudentName" />
+        </div>
+
+        <div class="mb-3">
+            <label for="InputStudentAge" class="form-label">Age</label>
+            <InputNumber @bind-Value="student.Age" type="text" class="form-control" id="InputStudentAge" />
+        </div>
+
+        <div class="mb-3">
+            <label for="InputStudentAddress" class="form-label">Address</label>
+            <InputText @bind-Value="student.Address" type="text" class="form-control" id="InputStudentAddress" />
+        </div>
+
+        <button type="submit" class="btn btn-primary ">Submit</button>
+    </EditForm>
+}else
+{
+    <AddedSuccessfully Name="@studentName" />
+}
+
+@code {
+    Student student = new();
+    List<Course> courses = new();
+    ManagerContext db = new ManagerContext();
+
+    bool IsFormVisible = true;
+    string studentName;
+
+    protected override Task OnInitializedAsync()
+    {
+        courses = db.Courses.ToList();
+        MessagingCenter.Subscribe<AddedSuccessfully>(this, "ShowFormMsg", (sender) =>
+        {
+            IsFormVisible = true;
+            InvokeAsync(() => StateHasChanged());
+        });
+        return base.OnInitializedAsync();
+    }
+
+    void OnValidSubmit()
+    {
+        db.Students.Add(student);
+        db.SaveChanges();
+        if(student.Id != 0)
+        {
+            studentName = student.Name;
+            Navigator.NavigateTo("/students");
+            student = new Student();
+        }
+    }
+}

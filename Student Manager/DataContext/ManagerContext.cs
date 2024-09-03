@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Student_Manager.Entities;
+﻿using Student_Manager.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Student_Manager.DataContext
 {
@@ -7,34 +7,34 @@ namespace Student_Manager.DataContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;DataBase=;Trusted_Connection=True");
+            optionsBuilder.UseSqlServer("Server=.;DataBase=StudentManagement;Trusted_Connection=True");
             base.OnConfiguring(optionsBuilder);
         }
 
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
-        // Configure many-to-many relationship
-        modelBuilder.Entity<StudentCourse>()
-            .HasKey(sc => new { sc.StudentId, sc.CourseId });
+            // Configure many-to-many relationship
+            modelBuilder.Entity<StudentCourse>()
+                .HasKey(sc => new { sc.StudentId, sc.CourseId });
 
-        modelBuilder.Entity<StudentCourse>()
-            .HasOne(sc => sc.Student)
-            .WithMany(s => s.StudentCourses)
-            .HasForeignKey(sc => sc.StudentId);
+            modelBuilder.Entity<StudentCourse>()
+                .HasOne(sc => sc.Student)
+                .WithMany(s => s.StudentCourses)
+                .HasForeignKey(sc => sc.StudentId);
 
-        modelBuilder.Entity<StudentCourse>()
-            .HasOne(sc => sc.Course)
-            .WithMany(c => c.StudentCourses)
-            .HasForeignKey(sc => sc.CourseId);
+            modelBuilder.Entity<StudentCourse>()
+                .HasOne(sc => sc.Course)
+                .WithMany(c => c.StudentCourses)
+                .HasForeignKey(sc => sc.CourseId);
 
-        // Configure one-to-many relationship
-        modelBuilder.Entity<Instructor>()
-            .HasOne(i => i.Course)
-            .WithMany(c => c.Instructors)
-            .HasForeignKey(i => i.CourseId);
-    }
+            // Configure one-to-many relationship
+            modelBuilder.Entity<Instructor>()
+                .HasOne(i => i.Course)
+                .WithMany(c => c.Instructors)
+                .HasForeignKey(i => i.CourseId);
+        }
 
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }

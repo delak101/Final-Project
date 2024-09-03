@@ -1,0 +1,39 @@
+﻿@page "/courselist"
+
+<h2>List of Courses</h2>
+
+@if (courseList == null || !courseList.Any())
+{
+    <p>No Courses Found</p>
+}else
+{
+    <table class="table table-borderless">
+        <thead>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>NUMER OF STUDENTS</th>
+        </thead>
+        <tbody>
+            @foreach (var course in courseList)
+            {
+                <tr>
+                    <td>@course.Id</td>
+                    <td>@course.Name</td>
+                    <td>@course.StudentCourses.Count</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+    private List<Course> courseList = new();
+    ManagerContext db = new ManagerContext();
+
+    protected override async Task OnInitializedAsync()
+    {
+        courseList = await db.Courses.Include(t => t.StudentCourses).ToListAsync();
+    }
+
+}
