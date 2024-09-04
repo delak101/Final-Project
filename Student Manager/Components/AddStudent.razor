@@ -24,7 +24,7 @@
             <InputText @bind-Value="student.Address" type="text" class="form-control" id="InputStudentAddress" />
         </div>
 
-        <button type="submit" class="btn btn-primary ">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </EditForm>
 }else
 {
@@ -33,15 +33,13 @@
 
 @code {
     Student student = new();
-    List<Course> courses = new();
     ManagerContext db = new ManagerContext();
 
     bool IsFormVisible = true;
-    string studentName;
+    string studentName = string.Empty;
 
     protected override Task OnInitializedAsync()
     {
-        courses = db.Courses.ToList();
         MessagingCenter.Subscribe<AddedSuccessfully>(this, "ShowFormMsg", (sender) =>
         {
             IsFormVisible = true;

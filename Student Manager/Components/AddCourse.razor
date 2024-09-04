@@ -16,16 +16,17 @@
 }
 else
 {
-    <CourseAddedSuccessfully Name="@courseName" />
+    <AddedSuccessfully Name="@courseName" />
 }
 @code {
     private Course newCourse = new();
     private bool IsFormVisible = true;
-    private string courseName;
+    private string courseName = string.Empty;
     ManagerContext db = new ManagerContext();
 
     protected override async Task OnInitializedAsync()
     {
+        await Task.Delay(20);
         MessagingCenter.Subscribe<AddedSuccessfully>(this, "ShowFormMsg", (sender) =>
         {
             IsFormVisible = true;

@@ -1,5 +1,76 @@
-﻿<h3>StudentCourseAssignment</h3>
+﻿@using AKSoftware.Blazor.Utilities
+
+@if (IsFormVisible)
+{
+    <div class="alert alert-secondary" role="alert">
+        <h3>Manage Student</h3>
+    </div>
+
+    <EditForm Model="studentcourse" OnValidSubmit="OnValidSubmit">
+        <div class="mb-3">
+            <label for="StudentSelect" class="form-label">Name</label>
+            <InputSelect @bind-Value="studentcourse.StudentId" type="text" class="form-select form-select-lg mb-3" id="StudentSelect">
+                @foreach (var student in students)
+                {
+                    <option value="@student.Id">@student.Name</option>
+                }
+            </InputSelect>
+        </div>
+
+        <div class="mb-3">
+            <label for="CourseSelect" class="form-label">Select Course: </label>
+            <InputSelect @bind-Value="studentcourse.CourseId" class="form-select form-select-sm" id="CourseSelect">
+                @foreach (var course in courses)
+                {
+                    <option value="@course.Id">@course.Name</option>
+                }
+            </InputSelect>
+        </div>
+
+        <button type="submit" class="btn btn-primary ">Submit</button>
+    </EditForm>
+}
+else
+{
+    <h2>Student Managed Successfully</h2>
+    @* <AddedSuccessfully Name="@" /> *@
+}
 
 @code {
+    StudentCourse studentcourse = new();
+    List<Course> courses = new();
+    List<Student> students = new();
 
+    ManagerContext db = new ManagerContext();
+
+    bool IsFormVisible = true;
+
+    protected override Task OnInitializedAsync()
+    {
+        courses = db.Courses.ToList();
+        students = db.Students.ToList();
+        MessagingCenter.Subscribe<AddedSuccessfully>(this, "ShowFormMsg", (sender) =>
+        {
+            IsFormVisible = true;
+            InvokeAsync(() => StateHasChanged());
+        });
+        return base.OnInitializedAsync();
+    }
+
+    void OnValidSubmit()
+    {
+        var selectedCourse = db.Courses.FirstOrDefault(c => c.Id == studentcourse.CourseId);
+        var selectedStudent = db.Students.FirstOrDefault(s => s.Id == studentcourse.StudentId);
+
+        if (selectedCourse != null && selectedStudent != null)
+        {
+            studentcourse.Course = selectedCourse;
+            studentcourse.Student = selectedStudent;
+
+            db.StudentCourses.Add(studentcourse);
+
+            db.SaveChanges();
+
+        }
+    }
 }

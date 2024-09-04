@@ -5,6 +5,12 @@ namespace Student_Manager.DataContext
 {
     public class ManagerContext : DbContext
     {
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<StudentCourse> StudentCourses { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=.;DataBase=StudentManagement;Trusted_Connection=True");
@@ -36,11 +42,14 @@ namespace Student_Manager.DataContext
                 .HasForeignKey(i => i.CourseId);
         }
 
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Instructor> Instructors { get; set; }
-        public DbSet<StudentCourse> StudentCourses { get; set; }
 
+        public Task<Student> GetStudentByNameAsync(string studentName)
+        {
+            return Students
+                .Include(s => s.StudentCourses)
+                .ThenInclude(sc => sc.Course)
+                .FirstOrDefaultAsync(s => s.Name == studentName)!;
+        }
 
     }
 }

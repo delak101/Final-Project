@@ -1,0 +1,38 @@
+﻿@page "/studentdetails/{studentname}"
+<h3>Student Details</h3>
+
+@if (student == null)
+{
+    <h3 class="alert alert-danger">Not Found</h3>
+}
+else
+{
+    <div>
+        <p><strong>Name:</strong> @student.Name</p>
+        <p><strong>Age:</strong> @student.Age</p>
+        <p><strong>Address:</strong> @student.Address</p>
+        <p><strong>Courses:</strong></p>
+        <ul>
+            @foreach (var sc in student.StudentCourses)
+            {
+                <li>@sc.Course.Name</li>
+            }
+        </ul>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string studentname { get; set; } = string.Empty;
+
+    Student student = new Student();
+
+    ManagerContext db = new ManagerContext();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        student = await db.GetStudentByNameAsync(studentname);
+    }
+
+}

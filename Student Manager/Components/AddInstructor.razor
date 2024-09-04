@@ -16,7 +16,7 @@
 
         <div class="mb-3">
             <label for="CourseSelect" class="form-label">Select Course: </label>
-            <InputSelect @bind-Value="instructor.CourseId" class="form-check-input" id="CourseSelect">
+            <InputSelect @bind-Value="instructor.CourseId" class="form-control" id="CourseSelect">
                 @foreach (var course in courses)
                 {
                     <option value="@course.Id">@course.Name</option>
