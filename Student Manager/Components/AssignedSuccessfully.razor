@@ -1,0 +1,17 @@
+﻿<div class="alert alert-success" role="alert">
+    <strong>@courseName</strong> has been assigned to <strong>@studentName</strong> successfully!
+</div>
+<button class="btn btn-secondary" @onclick="OnOkClick">OK</button>
+
+@code {
+    [Parameter]
+    public string studentName { get; set; }
+    
+    [Parameter]
+    public string courseName { get; set; }
+
+    private void OnOkClick()
+    {
+        MessagingCenter.Send(this, "ShowFormMsg");
+    }
+}
