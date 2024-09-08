@@ -1,0 +1,71 @@
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\Student Manager.csproj.AssemblyReference.cache
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\Student Manager.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\Student Manager.AssemblyInfoInputs.cache
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\Student Manager.AssemblyInfo.cs
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\Student Manager.csproj.CoreCompileInputs.cache
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\Student Manager.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\Student Manager.RazorAssemblyInfo.cache
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\Student Manager.RazorAssemblyInfo.cs
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\Student Manager.sourcelink.json
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\appsettings.json
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Student Manager.staticwebassets.runtime.json
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Student Manager.exe
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Student Manager.deps.json
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Student Manager.runtimeconfig.json
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Student Manager.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Student Manager.pdb
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\AKSoftware.Blazor.Utilities.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Humanizer.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\System.Runtime.Caching.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\staticwebassets\msbuild.Student Manager.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\staticwebassets\msbuild.build.Student Manager.props
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Student Manager.props
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Student Manager.props
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\scopedcss\bundle\Student Manager.styles.css
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\scopedcss\projectbundle\Student Manager.bundle.scp.css
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\Student .4D7458F5.Up2Date
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\Student Manager.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\refint\Student Manager.dll
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\Student Manager.pdb
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\Student Manager.genruntimeconfig.cache
+C:\Users\Delak\source\repos\Final Project\Student Manager\obj\Debug\net6.0\ref\Student Manager.dll
