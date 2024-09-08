@@ -1,13 +1,17 @@
 ﻿@page "/students"
 @inject NavigationManager Navigator
 
-<h3>Add Students</h3>
+<div class="alert alert-primary text-center">
+    <h2>Add Students</h2>
+</div>
 
 <button @onclick="AddStudent" class="btn btn-primary mb-3">Add New Student</button>
 
 <hr />
 
-<StudentsList/>
+<div class="m-4">
+    <StudentsList/>
+</div>
 
 @code {
     void AddStudent()

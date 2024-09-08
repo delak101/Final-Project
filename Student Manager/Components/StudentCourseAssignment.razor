@@ -9,25 +9,27 @@
     <EditForm Model="studentcourse" OnValidSubmit="OnValidSubmit">
         <div class="mb-3">
             <label for="StudentSelect" class="form-label">Name</label>
-            <InputSelect @bind-Value="studentcourse.StudentId" type="text" class="form-select form-select-lg mb-3" id="StudentSelect">
+            <select @onchange="OnStudentSelected" class="form-select form-select-lg mb-3" id="StudentSelect">
+                <option value="">Select a student</option>
                 @foreach (var student in students)
                 {
                     <option value="@student.Id">@student.Name</option>
                 }
-            </InputSelect>
+            </select>
         </div>
 
         <div class="mb-3">
             <label for="CourseSelect" class="form-label">Select Course: </label>
             <InputSelect @bind-Value="studentcourse.CourseId" class="form-select form-select-sm" id="CourseSelect">
-                @foreach (var course in courses)
+                <option value="">Select a course</option>
+                @foreach (var course in availableCourses)
                 {
                     <option value="@course.Id">@course.Name</option>
                 }
             </InputSelect>
         </div>
 
-        <button type="submit" class="btn btn-primary ">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </EditForm>
 }
 else
@@ -39,10 +41,12 @@ else
     StudentCourse studentcourse = new();
     List<Course> courses = new();
     List<Student> students = new();
+    List<Course> availableCourses = new();
 
     ManagerContext db = new ManagerContext();
 
     bool IsFormVisible = true;
+    string ErrorMessage = string.Empty;
 
     string studentName = string.Empty;
     string courseName = string.Empty;
@@ -59,21 +63,31 @@ else
         return base.OnInitializedAsync();
     }
 
+    void OnStudentSelected(ChangeEventArgs e)
+    {
+        var selectedStudentId = int.Parse(e.Value.ToString());
+        var assignedCourseIds = db.StudentCourses
+                                  .Where(sc => sc.StudentId == selectedStudentId)
+                                  .Select(sc => sc.CourseId)
+                                  .ToList();
+        availableCourses = courses.Where(c => !assignedCourseIds.Contains(c.Id)).ToList();
+        
+        studentcourse.StudentId = selectedStudentId;
+    }
+
     void OnValidSubmit()
     {
         var selectedCourse = db.Courses.FirstOrDefault(c => c.Id == studentcourse.CourseId);
-        courseName = selectedCourse.Name;
         var selectedStudent = db.Students.FirstOrDefault(s => s.Id == studentcourse.StudentId);
+
+        courseName = selectedCourse.Name;
         studentName = selectedStudent.Name;
-        if (selectedCourse != null && selectedStudent != null)
-        {
-            studentcourse.Course = selectedCourse;
-            studentcourse.Student = selectedStudent;
 
-            db.StudentCourses.Add(studentcourse);
+        studentcourse.Course = selectedCourse;
+        studentcourse.Student = selectedStudent;
 
-            db.SaveChanges();
-            IsFormVisible = false;
-        }
+        db.StudentCourses.Add(studentcourse);
+        db.SaveChanges();
+        IsFormVisible = false;
     }
 }

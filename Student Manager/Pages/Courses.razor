@@ -1,12 +1,11 @@
 ﻿@page "/courses"
+@inject NavigationManager Navigator
 
 <div class="alert alert-primary text-center">
     <h2>Courses</h2>
 </div>
 
-<div class="m-4">
-    <AddCourse/>
-</div>
+<button @onclick="AddCourse" class="btn btn-primary mb-3">Add New Course</button>
 
 <hr />
 
@@ -15,5 +14,8 @@
 </div>
 
 @code {
-
+    void AddCourse()
+    {
+        Navigator.NavigateTo("addcourse");
+    }
 }

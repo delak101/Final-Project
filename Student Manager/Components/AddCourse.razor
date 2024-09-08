@@ -1,4 +1,8 @@
-﻿@if (IsFormVisible)
+﻿@page "/addcourse"
+@inject NavigationManager Navigator
+@using AKSoftware.Blazor.Utilities
+
+@if (IsFormVisible)
 {
     <div class="alert alert-secondary" role="alert">
         <h3>Add Course</h3>
@@ -19,19 +23,20 @@ else
     <AddedSuccessfully Name="@courseName" />
 }
 @code {
-    private Course newCourse = new();
-    private bool IsFormVisible = true;
-    private string courseName = string.Empty;
+    Course newCourse = new();
     ManagerContext db = new ManagerContext();
 
-    protected override async Task OnInitializedAsync()
+    bool IsFormVisible = true;
+    string courseName = string.Empty;
+
+    protected override Task OnInitializedAsync()
     {
-        await Task.Delay(20);
         MessagingCenter.Subscribe<AddedSuccessfully>(this, "ShowFormMsg", (sender) =>
         {
             IsFormVisible = true;
             InvokeAsync(() => StateHasChanged());
         });
+        return base.OnInitializedAsync();
     }
     private async Task HandleValidSubmit()
     {
@@ -41,6 +46,7 @@ else
         {
             courseName = newCourse.Name;
             MessagingCenter.Send(this, "CourseAdded", newCourse);
+            Navigator.NavigateTo("/courses");
             newCourse = new Course();
             IsFormVisible = false;
         }

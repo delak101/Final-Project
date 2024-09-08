@@ -2,18 +2,24 @@
 
 <PageTitle>Student Manager</PageTitle>
 
-<div class="page">
+<div class="d-flex">
     <div class="sidebar">
         <NavMenu />
     </div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
-
+    <main class="flex-grow-1">
         <article class="content px-4">
             @Body
         </article>
     </main>
 </div>
+
+<style>
+    .sidebar {
+        width: 280px;
+    }
+
+    main {
+        flex-grow: 1;
+    }
+</style>
