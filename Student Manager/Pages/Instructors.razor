@@ -1,14 +1,19 @@
 ﻿@page "/instructors"
 @inject NavigationManager Navigator
 
-<h3>Add Instructor</h3>
+<div class="alert alert-dark text-center">
+    <h1>Add Instructor</h1>
+</div>
 
-<button @onclick="AddInstructor" class="btn btn-primary mb-3">Add New Instructor</button>
+<div class="d-flex justify-content-center mt-3">
+    <button @onclick="AddInstructor" class="btn btn-dark mb-3">Add New Instructor</button>
+</div>
 
 <hr />
 
-<InstructorList />
-
+<div class="m-4">
+    <InstructorList />
+</div>
 @code {
     void AddInstructor()
     {

@@ -5,13 +5,17 @@
 @if (IsFormVisible)
 {
     <div class="alert alert-secondary" role="alert">
-        <h3>Add Instructor</h3>
+        <h2>Add Instructor</h2>
     </div>
 
     <EditForm Model="instructor" OnValidSubmit="OnValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
         <div class="mb-3">
             <label for="InputInstructorName" class="form-label">Name</label>
             <InputText @bind-Value="instructor.Name" type="text" class="form-control" id="InputInstructorName" />
+            <ValidationMessage For="() => instructor.Name" />
         </div>
 
         <div class="mb-3">
@@ -22,9 +26,12 @@
                     <option value="@course.Id">@course.Name</option>
                 }
             </InputSelect>
+            <ValidationMessage For="() => instructor.CourseId" />
         </div>
 
-        <button type="submit" class="btn btn-primary ">Submit</button>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </EditForm>
 }
 else

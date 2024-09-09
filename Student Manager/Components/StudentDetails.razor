@@ -1,23 +1,35 @@
 ﻿@page "/studentdetails/{studentname}"
-<h3>Student Details</h3>
+@using Microsoft.AspNetCore.Components
+@using Student_Manager.Entities
+@using Student_Manager.DataContext
+
+<h3 class="text-center my-4">Student Details</h3>
 
 @if (student == null)
 {
-    <h3 class="alert alert-danger">Not Found</h3>
+    <div class="alert alert-danger text-center">
+        <h4>Student Not Found</h4>
+        <p>The student with the name '@studentname' could not be found.</p>
+    </div>
 }
 else
 {
-    <div>
-        <p><strong>Name:</strong> @student.Name</p>
-        <p><strong>Age:</strong> @student.Age</p>
-        <p><strong>Address:</strong> @student.Address</p>
-        <p><strong>Courses:</strong></p>
-        <ul>
-            @foreach (var sc in student.StudentCourses)
-            {
-                <li>@sc.Course.Name</li>
-            }
-        </ul>
+    <div class="card mx-auto" style="max-width: 600px;">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">@student.Name</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Age:</strong> @student.Age</p>
+            <p><strong>Address:</strong> @student.Address</p>
+            <p><strong>Courses:</strong></p>
+            <ul class="list-group mb-3">
+                @foreach (var sc in student.StudentCourses)
+                {
+                    <li class="list-group-item">@sc.Course.Name</li>
+                }
+            </ul>
+            <button class="btn btn-secondary" @onclick="GoBack">Return to Student List</button>
+        </div>
     </div>
 }
 
@@ -29,10 +41,16 @@ else
 
     ManagerContext db = new ManagerContext();
 
-
     protected override async Task OnInitializedAsync()
     {
         student = await db.GetStudentByNameAsync(studentname);
     }
 
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("/students");
+    }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
 }

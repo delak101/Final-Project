@@ -5,28 +5,37 @@
 @if (IsFormVisible)
 {
     <div class="alert alert-secondary" role="alert">
-        <h3>Add Student</h3>
+        <h2>Add Student</h2>
     </div>
 
     <EditForm Model="student" OnValidSubmit="OnValidSubmit">
+        <DataAnnotationsValidator />
+        @* <ValidationSummary /> *@
+
         <div class="mb-3">
             <label for="InputStudentName" class="form-label">Name</label>
             <InputText @bind-Value="student.Name" type="text" class="form-control" id="InputStudentName" />
+            <ValidationMessage For="() => student.Name" />
         </div>
 
         <div class="mb-3">
             <label for="InputStudentAge" class="form-label">Age</label>
             <InputNumber @bind-Value="student.Age" type="text" class="form-control" id="InputStudentAge" />
+            <ValidationMessage For="() => student.Age" />
         </div>
 
         <div class="mb-3">
             <label for="InputStudentAddress" class="form-label">Address</label>
             <InputText @bind-Value="student.Address" type="text" class="form-control" id="InputStudentAddress" />
+            <ValidationMessage For="() => student.Address" />
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </EditForm>
-}else
+}
+else
 {
     <AddedSuccessfully Name="@studentName" />
 }

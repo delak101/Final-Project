@@ -7,10 +7,13 @@
     </div>
 
     <EditForm Model="studentcourse" OnValidSubmit="OnValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        
         <div class="mb-3">
             <label for="StudentSelect" class="form-label">Name</label>
             <select @onchange="OnStudentSelected" class="form-select form-select-lg mb-3" id="StudentSelect">
-                <option value="">Select a student</option>
+                <option value="">-- Select a student --</option>
                 @foreach (var student in students)
                 {
                     <option value="@student.Id">@student.Name</option>
@@ -20,13 +23,13 @@
 
         <div class="mb-3">
             <label for="CourseSelect" class="form-label">Select Course: </label>
-            <InputSelect @bind-Value="studentcourse.CourseId" class="form-select form-select-sm" id="CourseSelect">
-                <option value="">Select a course</option>
+            <select @onchange="OnCourseSelected" class="form-select form-select-sm" id="CourseSelect">
+                <option value="">-- Select a course --</option>
                 @foreach (var course in availableCourses)
                 {
                     <option value="@course.Id">@course.Name</option>
                 }
-            </InputSelect>
+            </select>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -34,7 +37,7 @@
 }
 else
 {
-    <AssignedSuccessfully studentName="@studentName" courseName="@courseName" />
+    <AssignedSuccessfully studentName="@studentName" courseName="@courseName" OnOkClicked="ResetForm" />
 }
 
 @code {
@@ -65,20 +68,36 @@ else
 
     void OnStudentSelected(ChangeEventArgs e)
     {
-        var selectedStudentId = int.Parse(e.Value.ToString());
-        var assignedCourseIds = db.StudentCourses
-                                  .Where(sc => sc.StudentId == selectedStudentId)
-                                  .Select(sc => sc.CourseId)
-                                  .ToList();
-        availableCourses = courses.Where(c => !assignedCourseIds.Contains(c.Id)).ToList();
-        
-        studentcourse.StudentId = selectedStudentId;
+        if (int.TryParse(e.Value.ToString(), out var selectedStudentId))
+        {
+            var assignedCourseIds = db.StudentCourses
+                                      .Where(sc => sc.StudentId == selectedStudentId)
+                                      .Select(sc => sc.CourseId)
+                                      .ToList();
+            availableCourses = courses.Where(c => !assignedCourseIds.Contains(c.Id)).ToList();
+            
+            studentcourse.StudentId = selectedStudentId;
+        }
+    }
+
+    void OnCourseSelected(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value.ToString(), out var selectedCourseId))
+        {
+            studentcourse.CourseId = selectedCourseId;
+        }
     }
 
     void OnValidSubmit()
     {
         var selectedCourse = db.Courses.FirstOrDefault(c => c.Id == studentcourse.CourseId);
         var selectedStudent = db.Students.FirstOrDefault(s => s.Id == studentcourse.StudentId);
+
+        if (selectedCourse == null || selectedStudent == null)
+        {
+            ErrorMessage = "Invalid student or course selection.";
+            return;
+        }
 
         courseName = selectedCourse.Name;
         studentName = selectedStudent.Name;
@@ -89,5 +108,13 @@ else
         db.StudentCourses.Add(studentcourse);
         db.SaveChanges();
         IsFormVisible = false;
+    }
+
+    void ResetForm()
+    {
+        studentcourse = new StudentCourse();
+        availableCourses = new List<Course>();
+        IsFormVisible = true;
+        StateHasChanged();
     }
 }

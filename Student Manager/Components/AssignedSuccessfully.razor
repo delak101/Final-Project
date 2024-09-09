@@ -9,9 +9,15 @@
     
     [Parameter]
     public string courseName { get; set; }
+    
+    [Parameter]
+    public EventCallback OnOkClicked { get; set; }
 
-    private void OnOkClick()
+    private async Task OnOkClick()
     {
-        MessagingCenter.Send(this, "ShowFormMsg");
+        if (OnOkClicked.HasDelegate)
+        {
+            await OnOkClicked.InvokeAsync(null);
+        }
     }
 }

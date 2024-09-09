@@ -5,23 +5,28 @@
 @if (IsFormVisible)
 {
     <div class="alert alert-secondary" role="alert">
-        <h3>Add Course</h3>
+        <h2>Add Course</h2>
     </div>
 
     <EditForm Model="newCourse" OnValidSubmit="HandleValidSubmit">
-        @* <DataAnnotationsValidator /> *@
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
         <div class="mb-3">
             <label for="InputCourseName" class="form-label">Course Name</label>
             <InputText @bind-Value="newCourse.Name" type="text" class="form-control" id="InputCourseName" />
-            @* <ValidationMessage For="() => newCourse.Name" /> *@
+            <ValidationMessage For="() => newCourse.Name" />
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </EditForm>
 }
 else
 {
     <AddedSuccessfully Name="@courseName" />
 }
+
 @code {
     Course newCourse = new();
     ManagerContext db = new ManagerContext();
@@ -38,6 +43,7 @@ else
         });
         return base.OnInitializedAsync();
     }
+
     private async Task HandleValidSubmit()
     {
         db.Courses.Add(newCourse);
